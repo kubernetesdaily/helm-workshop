@@ -2,17 +2,17 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 deployment:
-  replicaCount: 1
-  name: my-deployememt
+  replicaCount: 4
+  name: new-deployememt
   image:
     app: ngnix 
     version: latest
 
 service:
-  name: my-service
+  name: new-service
   type: NodePort
   port: 80
   targetPort: 80
-  nodePort: 32036
+  nodePort: 32046
   selector:
     app: ngnix   

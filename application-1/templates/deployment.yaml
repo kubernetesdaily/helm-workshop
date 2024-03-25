@@ -1,20 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "application-1.fullname" . }}
-  labels:
-    app: nginx
+  name: {{ .Values.deployment.name }}
+  labels: {{- include "labels" . | nindent 4 }}    
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.deployment.replicaCount }}
   selector:
     matchLabels:
-      app: ngnix 
+      app: nginx
   template:
     metadata:
       labels:
         app: nginx
     spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-       
+        - name: nginx
+          image: "{{ .Values.deployment.image.app }}:{{ .Values.deployment.image.version }}"
