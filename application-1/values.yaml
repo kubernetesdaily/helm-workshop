@@ -16,3 +16,6 @@ service:
   nodePort: 32036
   selector:
     app: ngnix   
+
+container1:
+   enabled: false   

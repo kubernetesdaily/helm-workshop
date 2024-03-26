@@ -16,3 +16,12 @@ spec:
       containers:
         - name: nginx
           image: "{{ .Values.deployment.image.app }}:{{ .Values.deployment.image.version }}"
+          ports:
+          -  name: http
+             containerPort: 80
+             protocol: TCP
+        {{- if eq .Values.container1.enabled true }}   
+        {{- include "container1" . | nindent 8 }}
+        {{- else }}
+        {{- include "container2" . | nindent 8 }}
+        {{- end }}
